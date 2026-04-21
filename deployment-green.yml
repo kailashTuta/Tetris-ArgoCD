@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tetris-app-green
+  labels:
+    app: tetris
+    version: green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tetris
+      version: green
+  template:
+    metadata:
+      labels:
+        app: tetris
+        version: green
+    spec:
+      containers:
+        - name: tetris-container
+          image: kailashtuta/tetris:v2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
